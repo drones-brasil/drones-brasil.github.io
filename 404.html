@@ -3,15 +3,100 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=/docs/" />
-    <link rel="canonical" href="https://drones-brasil.github.io/docs/" />
-    <title>Drones Brasil</title>
-    <script>
-      window.location.replace("/docs/");
-    </script>
+    <title>Página não encontrada — Drones Brasil</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/docs/img/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Sora:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #070a0b;
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+        --border: rgba(255, 255, 255, 0.12);
+        --br-green: #1b8a5a;
+        --br-yellow: #ffd000;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: radial-gradient(
+            900px 520px at 22% 10%,
+            rgba(255, 208, 0, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            900px 520px at 82% 20%,
+            rgba(27, 138, 90, 0.18),
+            transparent 60%
+          ),
+          var(--bg);
+        color: var(--text);
+        font-family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      .card {
+        max-width: 860px;
+        width: 100%;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 22px 20px;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+      }
+      h1 {
+        margin: 0 0 10px 0;
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      p {
+        margin: 0 0 16px 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 800;
+        padding: 11px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+      }
+      .btnPrimary {
+        color: rgba(0, 0, 0, 0.86);
+        background: linear-gradient(135deg, var(--br-yellow), #ffe56a);
+      }
+    </style>
   </head>
   <body>
-    Redirecionando para <a href="/docs/">/docs/</a>…
+    <main class="card">
+      <h1>404 — Página não encontrada</h1>
+      <p>
+        O link que você tentou abrir não existe. Você pode voltar para a homepage ou ir direto para
+        os conteúdos em <code>/docs/</code>.
+      </p>
+      <div class="actions">
+        <a class="btn" href="/">Homepage</a>
+        <a class="btn btnPrimary" href="/docs/">Abrir docs</a>
+      </div>
+    </main>
   </body>
 </html>
 

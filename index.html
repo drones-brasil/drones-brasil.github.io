@@ -3,15 +3,610 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=/docs/" />
-    <link rel="canonical" href="https://drones-brasil.github.io/docs/" />
-    <title>Drones Brasil</title>
-    <script>
-      window.location.replace("/docs/");
-    </script>
+
+    <title>Drones Brasil — Hub colaborativo</title>
+    <meta
+      name="description"
+      content="Hub colaborativo de aulas, tutoriais, docs e labs sobre drones e robótica aérea no Brasil."
+    />
+    <meta name="theme-color" content="#0b3d2e" />
+
+    <meta property="og:title" content="Drones Brasil" />
+    <meta
+      property="og:description"
+      content="Hub colaborativo de aulas, tutoriais, docs e labs sobre drones e robótica aérea no Brasil."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://drones-brasil.github.io/" />
+
+    <link rel="icon" href="/docs/img/favicon.svg" />
+    <link rel="preload" as="image" href="/docs/img/drones-brasil.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Sora:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #070a0b;
+        --panel: rgba(255, 255, 255, 0.06);
+        --panel2: rgba(255, 255, 255, 0.08);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+        --muted2: rgba(255, 255, 255, 0.58);
+        --border: rgba(255, 255, 255, 0.12);
+        --shadow: rgba(0, 0, 0, 0.42);
+
+        --br-green: #1b8a5a;
+        --br-yellow: #ffd000;
+
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background: radial-gradient(
+            900px 520px at 12% 10%,
+            rgba(255, 208, 0, 0.12),
+            transparent 55%
+          ),
+          radial-gradient(
+            900px 520px at 82% 20%,
+            rgba(27, 138, 90, 0.18),
+            transparent 60%
+          ),
+          radial-gradient(
+            1200px 800px at 50% 110%,
+            rgba(27, 138, 90, 0.08),
+            transparent 55%
+          ),
+          var(--bg);
+        font-family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+        letter-spacing: -0.01em;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        background: linear-gradient(
+          to bottom,
+          rgba(7, 10, 11, 0.82),
+          rgba(7, 10, 11, 0.62)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .navInner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+
+      .brandMark {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: linear-gradient(
+          135deg,
+          rgba(27, 138, 90, 0.32),
+          rgba(255, 208, 0, 0.18)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+      }
+
+      .brandMark img {
+        width: 22px;
+        height: 22px;
+        display: block;
+        filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35));
+      }
+
+      .brandText {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+
+      .brandName {
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        font-size: 15px;
+      }
+
+      .brandTag {
+        font-size: 12px;
+        color: var(--muted2);
+      }
+
+      .navLinks {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .link {
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted);
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid transparent;
+        transition: background 140ms ease, border-color 140ms ease,
+          transform 140ms ease, color 140ms ease;
+      }
+
+      .link:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.10);
+        color: var(--text);
+        transform: translateY(-1px);
+      }
+
+      .cta {
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        padding: 10px 14px;
+        border-radius: 14px;
+        color: rgba(0, 0, 0, 0.86);
+        background: linear-gradient(135deg, var(--br-yellow), #ffe56a);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        box-shadow: 0 14px 44px rgba(0, 0, 0, 0.35);
+        transition: transform 140ms ease, filter 140ms ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.02);
+      }
+
+      .main {
+        flex: 1;
+      }
+
+      .hero {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 44px 20px 24px 20px;
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      @media (max-width: 920px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .headline {
+        padding: 26px 22px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.03)
+        );
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.40);
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.78);
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--br-green);
+        box-shadow: 0 0 0 6px rgba(27, 138, 90, 0.18);
+      }
+
+      h1 {
+        margin: 14px 0 12px 0;
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.02;
+        font-size: 48px;
+      }
+
+      @media (max-width: 520px) {
+        h1 {
+          font-size: 38px;
+        }
+      }
+
+      .sub {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.74);
+        line-height: 1.5;
+        font-size: 15px;
+        max-width: 62ch;
+      }
+
+      .heroActions {
+        margin-top: 18px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 800;
+        padding: 11px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .btnPrimary {
+        color: rgba(0, 0, 0, 0.86);
+        background: linear-gradient(135deg, var(--br-yellow), #ffe56a);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .aside {
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: linear-gradient(
+          180deg,
+          rgba(27, 138, 90, 0.10),
+          rgba(255, 255, 255, 0.03)
+        );
+        padding: 18px 18px;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+      }
+
+      .asideTitle {
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin: 0 0 10px 0;
+        font-size: 15px;
+      }
+
+      .asideList {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .asideItem {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 10px 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 28px;
+        padding: 0 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: rgba(0, 0, 0, 0.85);
+        background: linear-gradient(135deg, rgba(255, 208, 0, 0.92), rgba(255, 230, 106, 0.92));
+      }
+
+      .asideText b {
+        display: block;
+        font-size: 13px;
+        letter-spacing: -0.02em;
+        margin-bottom: 2px;
+      }
+
+      .asideText span {
+        color: var(--muted2);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 10px 20px 46px 20px;
+      }
+
+      .grid {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 12px;
+      }
+
+      .card {
+        grid-column: span 4;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.03)
+        );
+        padding: 16px 16px;
+        text-decoration: none;
+        transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.16);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.07),
+          rgba(255, 255, 255, 0.03)
+        );
+      }
+
+      @media (max-width: 920px) {
+        .card {
+          grid-column: span 6;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .card {
+          grid-column: span 12;
+        }
+      }
+
+      .cardTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 800;
+        color: rgba(255, 255, 255, 0.86);
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .badge::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--br-green);
+        box-shadow: 0 0 0 6px rgba(27, 138, 90, 0.18);
+      }
+
+      .card h3 {
+        margin: 12px 0 6px 0;
+        font-family: "Bricolage Grotesque", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        font-size: 18px;
+      }
+
+      .card p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.70);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .foot {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 22px 20px 26px 20px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .foot a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .foot a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
-    Redirecionando para <a href="/docs/">/docs/</a>…
+    <div class="wrap">
+      <header class="nav">
+        <div class="navInner">
+          <a class="brand" href="/" aria-label="Drones Brasil">
+            <span class="brandMark" aria-hidden="true">
+              <img src="/docs/img/drones-brasil.svg" alt="" />
+            </span>
+            <span class="brandText">
+              <span class="brandName">Drones Brasil</span>
+              <span class="brandTag">Hub colaborativo</span>
+            </span>
+          </a>
+
+          <nav class="navLinks" aria-label="Links">
+            <a class="link" href="/docs/">Docs</a>
+            <a class="link" href="/docs/#contribuir">Contribuir</a>
+            <a class="link" href="https://github.com/drones-brasil">GitHub</a>
+            <a class="cta" href="/docs/">Abrir conteúdos</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="hero">
+          <div class="headline">
+            <div class="kicker">
+              <span class="dot" aria-hidden="true"></span>
+              Comunidade de drones & robótica aérea no Brasil
+            </div>
+            <h1>Um hub simples para aprender, construir e contribuir.</h1>
+            <p class="sub">
+              Aulas, tutoriais, docs e labs — organizados por nível, palavras‑chave, autores e times.
+              Tudo como código (MDX + PR).
+            </p>
+
+            <div class="heroActions">
+              <a class="btn btnPrimary" href="/docs/">Ir para os conteúdos</a>
+              <a class="btn" href="/docs/aula-1-programacao-orientada-a-objetos">Começar pela Aula 1</a>
+              <a class="btn" href="https://github.com/drones-brasil/docs">Ver repositório</a>
+            </div>
+          </div>
+
+          <aside class="aside" aria-label="Como contribuir">
+            <h2 class="asideTitle">Como contribuir (rápido)</h2>
+            <ul class="asideList">
+              <li class="asideItem">
+                <span class="pill">1</span>
+                <span class="asideText">
+                  <b>Crie um MDX</b>
+                  <span>Adicione em <code>content/docs/</code> com front matter (summary, level, keywords, authors).</span>
+                </span>
+              </li>
+              <li class="asideItem">
+                <span class="pill">2</span>
+                <span class="asideText">
+                  <b>Inclua na navegação</b>
+                  <span>Referencie o docId em <code>content/navigation.yml</code>.</span>
+                </span>
+              </li>
+              <li class="asideItem">
+                <span class="pill">3</span>
+                <span class="asideText">
+                  <b>Abra um PR</b>
+                  <span>O CI valida links e referências. Publica em <code>/docs/</code>.</span>
+                </span>
+              </li>
+            </ul>
+          </aside>
+        </section>
+
+        <section class="section" aria-label="Entradas principais">
+          <div class="grid">
+            <a class="card" href="/docs/" aria-label="Acessar docs">
+              <div class="cardTop">
+                <span class="badge">Conteúdos</span>
+              </div>
+              <h3>Navegue pelo hub</h3>
+              <p>Sidebar por áreas/subáreas e conteúdos em ordem. Ideal para POC e evolução rápida.</p>
+            </a>
+
+            <a class="card" href="/docs/aula-1-programacao-orientada-a-objetos" aria-label="Aula 1">
+              <div class="cardTop">
+                <span class="badge">Aulas</span>
+              </div>
+              <h3>Trilha de aulas</h3>
+              <p>Aulas 1–5 já importadas. Embeds de YouTube, labs e exercícios no mesmo lugar.</p>
+            </a>
+
+            <a class="card" href="/docs/#contribuir" aria-label="Contribuir">
+              <div class="cardTop">
+                <span class="badge">Contribuir</span>
+              </div>
+              <h3>Conteúdo como código</h3>
+              <p>PRs simples, validação automática, autores + times em YAML e metadados no header.</p>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="foot">
+        <span>© <span id="y"></span> Drones Brasil</span>
+        <span>
+          <a href="/docs/">Docs</a> · <a href="https://github.com/drones-brasil">GitHub</a>
+        </span>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("y").textContent = String(new Date().getFullYear());
+    </script>
   </body>
 </html>
 
